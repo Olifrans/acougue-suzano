@@ -1,0 +1,213 @@
+/* =========================================
+   VARIÁVEIS E RESET
+   ========================================= */
+:root {
+    --color-primary: #8B0000;
+    --color-secondary: #1A1A1A;
+    --color-bg: #F9F9F9;
+    --color-bg-alt: #FFFFFF;
+    --color-text: #333333;
+    --color-text-light: #666666;
+    --color-cta: #FFC107;
+    --color-cta-hover: #E0A800;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
+
+[data-theme="dark"] {
+    --color-bg: #121212;
+    --color-bg-alt: #1E1E1E;
+    --color-text: #E0E0E0;
+    --color-text-light: #B0B0B0;
+    --color-secondary: #F9F9F9;
+    --shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    transition: var(--transition);
+}
+p, .section-text { max-width: 65ch; margin-left: auto; margin-right: auto; }
+.container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+/* =========================================
+   COMPONENTES
+   ========================================= */
+.btn {
+    display: inline-block; padding: 12px 24px; border-radius: 6px;
+    text-decoration: none; font-weight: 600; font-family: var(--font-heading);
+    transition: var(--transition); border: none; cursor: pointer; text-align: center;
+}
+.btn-primary { background-color: var(--color-primary); color: white; }
+.btn-primary:hover { background-color: #6d0000; }
+.btn-cta {
+    background-color: var(--color-cta); color: var(--color-secondary);
+    font-size: 1.1rem; box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+.btn-cta:hover { background-color: var(--color-cta-hover); transform: translateY(-2px); }
+.btn-outline { border: 2px solid var(--color-primary); color: var(--color-primary); background: transparent; }
+.btn-outline:hover { background-color: var(--color-primary); color: white; }
+.section { padding: 80px 0; }
+.bg-alt { background-color: var(--color-bg-alt); }
+.bg-dark { background-color: var(--color-secondary); color: white; }
+.text-light p { color: #ccc; }
+.section-title { font-family: var(--font-heading); font-size: 2rem; text-align: center; margin-bottom: 40px; color: var(--color-primary); }
+
+/* =========================================
+   HEADER (Glassmorphism)
+   ========================================= */
+#main-header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 15px 0; transition: var(--transition); }
+#main-header.scrolled { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow); }
+[data-theme="dark"] #main-header.scrolled { background: rgba(18, 18, 18, 0.85); }
+.header-content { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-primary); }
+.logo span { color: var(--color-text); }
+.desktop-nav a { margin: 0 15px; text-decoration: none; color: var(--color-text); font-weight: 600; transition: var(--transition); }
+.desktop-nav a:hover { color: var(--color-primary); }
+.header-actions { display: flex; align-items: center; gap: 15px; }
+#theme-toggle { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text); }
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero {
+    height: 90vh; background-image: url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=1600&q=80');
+    background-size: cover; background-position: center; position: relative; display: flex; align-items: center; text-align: center; color: white;
+}
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)); }
+.hero-content { position: relative; z-index: 2; }
+.hero h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 20px; line-height: 1.2; }
+.hero p { font-size: 1.2rem; margin-bottom: 30px; color: #e0e0e0; }
+.hero-cta { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+.animate-fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s forwards; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* =========================================
+   AUTHORITY STRIP & CARDS
+   ========================================= */
+.authority-strip { background-color: var(--color-primary); color: white; padding: 20px 0; }
+.authority-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; text-align: center; font-weight: 600; }
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.card { background-color: var(--color-bg-alt); padding: 30px; border-radius: 8px; box-shadow: var(--shadow); transition: var(--transition); text-align: center; }
+.card:hover { transform: translateY(-5px); }
+.card h3 { font-family: var(--font-heading); color: var(--color-primary); margin-bottom: 10px; }
+.price { font-size: 1.5rem; font-weight: 800; color: var(--color-secondary); margin-bottom: 15px; }
+
+/* =========================================
+   GALERIA & FAQ
+   ========================================= */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+.gallery-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; transition: var(--transition); }
+.gallery-img:hover { transform: scale(1.02); }
+.accordion-item { border-bottom: 1px solid var(--color-text-light); margin-bottom: 10px; }
+.accordion-header {
+    width: 100%; text-align: left; background: none; border: none; padding: 20px 0;
+    font-size: 1.1rem; font-weight: 600; color: var(--color-text); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; padding: 0 10px; }
+.accordion-content p { padding-bottom: 20px; color: var(--color-text-light); }
+.accordion-item.active .accordion-content { max-height: 200px; }
+.accordion-item.active .icon { transform: rotate(45deg); }
+
+/* =========================================
+   CONTATO & FOOTER
+   ========================================= */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+.contact-info p { margin-bottom: 15px; font-size: 1.1rem; }
+.payment-methods { margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap; }
+.payment-methods span { background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; }
+#smart-form { display: flex; flex-direction: column; gap: 15px; }
+#smart-form input, #smart-form textarea {
+    padding: 15px; border-radius: 6px; border: 1px solid #ccc;
+    font-family: var(--font-body); font-size: 1rem; background-color: var(--color-bg); color: var(--color-text);
+}
+.full-width { width: 100%; }
+footer { background-color: #000; color: #888; padding: 40px 0 20px; text-align: center; }
+.footer-content { display: flex; flex-direction: column; gap: 20px; margin-bottom: 20px; }
+.footer-brand h3 { color: white; margin-bottom: 10px; }
+.social-links { display: flex; justify-content: center; gap: 20px; }
+.social-links a { color: white; text-decoration: none; font-weight: 600; transition: var(--transition); }
+.social-links a:hover { color: var(--color-cta); }
+.copyright { border-top: 1px solid #333; padding-top: 20px; font-size: 0.9rem; }
+
+/* =========================================
+   STICKY MOBILE BAR & FLOATING WHATSAPP
+   ========================================= */
+.sticky-mobile-bar {
+    position: fixed; bottom: 0; left: 0; width: 100%; background-color: white;
+    display: flex; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 999;
+}
+.sticky-btn { flex: 1; text-align: center; padding: 15px; text-decoration: none; font-weight: 700; font-family: var(--font-heading); font-size: 1rem; }
+.sticky-btn.call { background-color: var(--color-secondary); color: white; }
+.sticky-btn.whatsapp { background-color: #25D366; color: white; }
+
+/* 🚨 BOTÃO FLUTUANTE DO WHATSAPP */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    z-index: 1002;
+    transition: var(--transition);
+    animation: pulse-wa 2s infinite;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1);
+    background-color: #20bd5a;
+}
+
+@keyframes pulse-wa {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Ajuste para Mobile: Botão flutuante sobe para não cobrir a Sticky Bar */
+@media (max-width: 768px) {
+    .desktop-nav { display: none; }
+    .hero h1 { font-size: 2rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .cookie-banner { flex-direction: column; text-align: center; bottom: 80px; left: 10px; right: 10px; }
+    
+    .floating-whatsapp {
+        bottom: 80px; /* Acima da sticky bar */
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+}
+
+/* =========================================
+   MODAL & UTILITÁRIOS
+   ========================================= */
+.cookie-banner {
+    position: fixed; bottom: 20px; left: 20px; right: 20px; background-color: var(--color-secondary);
+    color: white; padding: 20px; border-radius: 8px; box-shadow: var(--shadow); z-index: 1001;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px; max-width: 600px; margin: 0 auto;
+}
+.cookie-banner a { color: var(--color-cta); }
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 2000;
+}
+.modal-content { background-color: var(--color-bg-alt); padding: 40px; border-radius: 8px; text-align: center; max-width: 400px; width: 90%; }
+.modal-content h3 { color: var(--color-primary); margin-bottom: 15px; }
+.hidden { display: none !important; }
